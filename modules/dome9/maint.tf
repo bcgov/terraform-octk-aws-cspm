@@ -141,6 +141,7 @@ resource "aws_iam_policy" "readonly-policy" {
                 "cognito-idp:DescribeRiskConfiguration",
                 "macie2:DescribeBuckets",
                 "macie2:GetMacieSession",
+                "macie2:GetFindingStatistics",
                 "dynamodb:ListTagsOfResource",
                 "ec2:SearchTransitGatewayRoutes",
                 "elasticfilesystem:Describe*",
