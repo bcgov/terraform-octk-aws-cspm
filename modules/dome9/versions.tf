@@ -6,7 +6,7 @@ terraform {
     }
     dome9 = {
       source  = "dome9/dome9"
-      version = "1.27.1"
+      version = "1.29.0"
     }
   }
 }

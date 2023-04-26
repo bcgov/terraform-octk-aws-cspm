@@ -93,11 +93,24 @@ resource "dome9_cloudaccount_aws" "this" {
       region             = "ap_northeast_3"
     }
   }
+
+  depends_on = [time_sleep.wait_for_role]
+}
+
+resource "time_sleep" "wait_for_role" {
+  create_duration = "10s"
+
+  triggers = {
+    role_arn = "${aws_iam_role.dome9.arn}"
+  }
+
+  depends_on = [aws_iam_role.dome9]
+
 }
 
 #Create the role and setup the trust policy
 resource "aws_iam_role" "dome9" {
-  name               = "BCGOV_CloudGuardConnect"
+  name               = "PBMMAccel-BCGOV_CloudGuardConnect"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -121,7 +134,7 @@ EOF
 
 #Create the readonly policy
 resource "aws_iam_policy" "readonly-policy" {
-  name        = "BCGOV_CloudGuardReadOnly"
+  name        = "PBMMAccel-BCGOV_CloudGuardReadOnly"
   description = ""
   policy      = <<EOF
 {
@@ -139,9 +152,6 @@ resource "aws_iam_policy" "readonly-policy" {
                 "cognito-identity:DescribeIdentityPool",
                 "cognito-idp:DescribeUserPool",
                 "cognito-idp:DescribeRiskConfiguration",
-                "macie2:DescribeBuckets",
-                "macie2:GetMacieSession",
-                "macie2:GetFindingStatistics",
                 "dynamodb:ListTagsOfResource",
                 "ec2:SearchTransitGatewayRoutes",
                 "elasticfilesystem:Describe*",
@@ -149,6 +159,8 @@ resource "aws_iam_policy" "readonly-policy" {
                 "es:ListTags",
                 "eks:DescribeNodegroup",
                 "eks:ListNodegroups",
+                "eks:ListFargateProfiles",
+                "eks:DescribeFargateProfile",
                 "glue:GetConnections",
                 "glue:GetSecurityConfigurations",
                 "inspector2:ListFindings",
@@ -161,6 +173,7 @@ resource "aws_iam_policy" "readonly-policy" {
                 "logs:Get*",
                 "logs:FilterLogEvents",
                 "logs:ListLogDeliveries",
+                "macie2:DescribeBuckets",
                 "mq:DescribeBroker",
                 "mq:ListBrokers",
                 "network-firewall:DescribeFirewall",
@@ -182,9 +195,7 @@ resource "aws_iam_policy" "readonly-policy" {
                 "translate:GetTerminology",
                 "waf-regional:ListResourcesForWebACL",
                 "wafv2:ListWebACLs",
-                "wafv2:ListResourcesForWebACL",
-                "eks:ListFargateProfiles",
-                "eks:DescribeFargateProfile"
+                "wafv2:ListResourcesForWebACL"
             ],
             "Effect": "Allow",
             "Resource": "*"

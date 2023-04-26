@@ -4,14 +4,15 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
-| <a name="requirement_dome9"></a> [dome9](#requirement\_dome9) | 1.27.1 |
+| <a name="requirement_dome9"></a> [dome9](#requirement\_dome9) | 1.29.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.0 |
-| <a name="provider_dome9"></a> [dome9](#provider\_dome9) | 1.27.1 |
+| <a name="provider_dome9"></a> [dome9](#provider\_dome9) | 1.29.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | n/a |
 
 ## Modules
 
@@ -25,7 +26,8 @@ No modules.
 | [aws_iam_policy_attachment.attach-d9-read-policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy_attachment) | resource |
 | [aws_iam_role.dome9](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.attach-security-audit](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
-| [dome9_cloudaccount_aws.this](https://registry.terraform.io/providers/dome9/dome9/1.27.1/docs/resources/cloudaccount_aws) | resource |
+| [dome9_cloudaccount_aws.this](https://registry.terraform.io/providers/dome9/dome9/1.29.0/docs/resources/cloudaccount_aws) | resource |
+| [time_sleep.wait_for_role](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
 
 ## Inputs
 
